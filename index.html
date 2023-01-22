@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav{
+            width: 90%;
+            height: 30px;
+            padding: 10px;
+        }
+        .nav>img{
+            width: 10%;
+            border-radius: 10px;
+            
+        }
+
+
+
+        .main{
+            display: flex;
+            /* text-align: center; */
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+          
+        .cont-2{
+            width: 50%;
+            background-color: rgb(234, 231, 231);
+        }
+        .cont-2>h2{
+            text-align: center;
+        }
+        .cont-1>h2{
+            text-align: center;
+        }
+        .cont-1{
+            text-align: center;
+        }
+        .middle{
+            display: flex;
+        }
+        .middle>div{
+            text-align: center;
+        }
+        .fotter-1{
+            display: flex;
+            align-items: center;
+            background-color: rgb(237, 234, 234);
+        }
+        .fotter-1>p{
+            margin: 10px;
+        }
+        .footer-2{
+            display: flex;
+            background-color: rgb(63, 61, 61);
+        }
+        .footer-2>p{
+            margin: 10px;
+            color: white;
+        }
+        .input-group>input{
+            height: 30px;
+            width: 100%;
+            margin-bottom: 20px;
+           
+        }
+       .submit-button{
+        display: block;
+        height: 30px;
+       }
+       .input-group>span{
+        color: seagreen;
+       }
+       
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <img src="/logo.png" alt="">
+    </div>
+
+    <div class="main">
+        <div class="cont-1">
+            <h2>Create Your Account</h2>
+            <p>Already have an account?<a href="/login.html">sign in</a></p>
+            <form action="" name="myForm" >
+                <div class="input-group">
+                <input id="fname" type="text"  placeholder="First Name" required onkeyup="validateName()">
+              <br>  <span class="fname-error"> </span>
+                </div>
+               <div class="input-group">
+               <input id="lname" type="text"  placeholder="Last Name" required onkeyup="validateLname()">
+                <br> <span class="lname-error"></span>
+            </div>
+               <div class="input-group">  
+                <input   type="email" id="email" placeholder="Email Address" required onkeyup="validateEmail()">
+               <br> <span class="email-error"> </span>
+               </div>
+                <div class="input-group">
+                <input type="password" id="pass"  placeholder="Password" required onkeyup="validatePass()">
+               <br> <span class="pass-error"> </span>
+            </div>
+            <div class="input-group"> 
+                <input style="background-color: rgb(58, 58, 244);border: none;" type="submit" id="submit-button" onkeyup="validateSubmit()" value="Create Account">
+                <br><span class="submit-error"> </span>
+            </div>
+                <input  type="cancel" name="" id="" placeholder="Cancel">
+            
+          
+            </form>
+       </div>
+       
+
+        <div class="cont-2">
+            <h2>Account Benefits</h2>
+            <p>My Account is an easy, more centralized way to manage your tech. Sign Up Now!</p>
+            <div class="middle">
+                <div class="first">
+                    <img src="https://i.dell.com/sites/csimages/App-Merchandizing_Images/all/icon-1-tracking-36x36.png" alt="">
+                    <h5>Order Tracking</h5>
+                    <p>Manage orders, track shipping status and view support history</p>
+                </div>
+                <div class="sec">
+                    <img src="https://i.dell.com/sites/csimages/App-Merchandizing_Images/all/icon-3-profile-36x36.png" alt="">
+                    <h5>Profile Setting</h5>
+                    <p>Save your favorite payment method and shipping details for quicker checkout</p>
+                </div>
+                <div class="third">
+                    <img src="https://i.dell.com/sites/csimages/App-Merchandizing_Images/all/icon-2-mail-36x36.png" alt="">
+                    <h5>Manage Communications</h5>
+                    <p>Manage marketing and communications preferences</p>
+                </div>
+
+            </div>
+            <div class="last">
+                <img src="https://i.dell.com/sites/csimages/Banner_Imagery/all/bannerimage460x460.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="fotter-1">
+        <p>About Us</p>
+        <p>Careers</p>
+        <p>Community</p>
+        <p>Events</p>
+        <p>Partner Program</p>
+        <p>Premier</p>
+        <p>Dell Technologies</p>
+    </div>
+    <div class="footer-2">
+        <p>Copyright © 2023 Dell Inc</p>
+        <p>Terms of sale</p>
+        <p>Privacy Statement</p>
+        <p>Subscribe/Unsubscribe</p>
+        <p>Legal & Regulatory</p>
+        <p>Site Terms</p>
+        <p>Accessibility</p>
+        <p>Recycling</p>
+        <p>Site Managing</p>
+    </div>
+
+    
+</body>
+<script>
+    let firstN=document.getElementById("fname");
+    let lastN=document.getElementById("lname");
+    let emailD=document.getElementById("email");
+    let passW=document.getElementById("pass");
+    let form=document.querySelector("form");
+    
+    let lsdata=JSON.parse(localStorage.getItem("login-data"))||[];
+
+    form.addEventListener("submit",(el)=>{
+        el.preventDefault();
+       
+       
+
+          let obj={
+            firstName:firstN.value,
+            LastName:lastN.value,
+            EmailDetail:emailD.value,
+            passData:passW.value,
+          }
+          lsdata.push(obj);
+          localStorage.setItem("login-data",JSON.stringify(lsdata));
+          alert("created")
+    })
+
+
+
+
+    
+    
+    //validation form
+    let nerror=document.getElementById("fname-error");
+    let lerror=document.getElementById("lname-error");
+    let eerror=document.getElementById("email-error");
+    let perror=document.getElementById("pass-error");
+    let submit_error=document.getElementById("submit-error");
+
+    function validateName(){
+       let first=firstN.value
+        if(first.length==0){
+            nerror.innerHTML="name is required";
+        }
+        if(first.match(/^[A-Za-z]*\s{1}[A-Za-z]*&/)){
+            nerror.innerHTML="write full name";
+            return false;
+        }
+        nerror.innerHTML='<i class="fa-thin fa-circle-check"></i>';
+        return true;
+    }
+  
+
+    function validateLname(){
+        let last=lastN.value;
+        if(last.length==0){
+            nerror.innerHTML="name is required";
+        }
+        if(last.match(/^[A-Za-z]*\s{1}[A-Za-z]*$/)){
+            lerror.innerHTML="write full last name";
+            return false;
+        }
+        lerror.innerHTML='<i class="fa-thin fa-circle-check"></i>';
+        return true;  
+    }
+
+    function validateEmail(){
+        let email=emailD.value;
+        if(email.length==0){
+            eerror.innerHTML="email is required";
+        } 
+if(!email.match(/^[A-Za-z]\._\-[0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/ )){
+            eerror.innerHTML="Email is invaild";
+            return false;
+        }
+        eerror.innerHTML='<i class="fa-thin fa-circle-check"></i>';
+        return true;   
+
+    }
+
+    function validatePass(){
+        let pas=passW.value;
+        if(pas.length==0){
+            perror.innerHTML="name is required";
+        }
+        if(pas.match(/^[A-Za-z]*\s{1}[A-Za-z]*&/)){
+            perror.innerHTML="password should strong";
+            return true;
+        }
+        perror.innerHTML='<i class="fa-thin fa-circle-check"></i>';
+        return false;   
+    }
+
+
+ 
+</script>
+</html>

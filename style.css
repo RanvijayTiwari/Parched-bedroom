@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 100%;
+    margin-top: 30px;
+    border-top: #2bab0d;
+}
+.header {
+    width: 100%;
+}
+.logo {
+    width: 10%;
+    float: left;
+}
+.search {
+    float: left;
+    padding: 0 300px;
+    height: 30px;
+}
+
+.search input {
+    width: 300px;
+}
+.logo img {
+    width: 100%;
+}
+.top-nav>a{
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.menu-bar{
+    margin-top: 50px;
+    text-align: center;
+    background-color: green; 
+}
+.menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    color: white;
+}
+.menu-bar ul li{
+    width: 120px;
+    margin: 15px;
+    padding: 15px;
+}
+
+.menu-bar ul li a{
+    text-decoration: none;
+    color: white;
+}
+.active, .menu-bar ul li:hover{
+    background: #2bab0d;
+    border-radius: 3px;
+}
+
+.sub-menu-1{
+    display: none;
+}
+.menu-bar ul li:hover .sub-menu-1{
+    display: block;
+    position: absolute;
+    background: rgb(0, 100, 0);
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul{
+    display: block;
+    margin: 10px;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li{
+    width: 150px;
+    padding: 10px;
+    border-bottom: 1px;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul li a{
+ border-bottom: none;
+}
+
+
+
+
+/* product */
+.cont{
+    margin: 50px 200px 50px 200px;
+    /* border: 2px solid red; */
+    
+}
+.cont>div{
+    display: flex;
+    /* margin-right: 30px; */
+    justify-content: space-between;
+    margin-bottom: 100px;
+    border: 1px solid darkgray;
+    
+}
+.cont>div>div{
+   margin-left: 80px;
+   text-align: center;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.cont>div>div:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.cont>div>img{
+    width: 50%;
+}
+.cont>div>div>img{
+    width: 90%;
+}
+
+.fotter-1{
+    display: flex;
+    align-items: center;
+    background-color: rgb(237, 234, 234);
+}
+.fotter-1>p{
+    margin: 10px;
+}
+.footer-2{
+    display: flex;
+    background-color: rgb(63, 61, 61);
+}
+.footer-2>p{
+    margin: 10px;
+    color: white;
+}

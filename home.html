@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">
+            <img src="/logo.png" alt="">
+        </div>
+        <div class="search">
+            <input  type="search" name="" id="nav-search">
+        </div>
+
+        <div class="top-nav">
+            <a href="/index.html">Sign in/create account</a>
+            <a href="">Contact Us</a>
+            <a href="">IN/EN</a>
+            <a href="/cart.html">Cart</a>
+
+        </div>
+    </div>
+
+    <div class="menu-bar">
+        <ul>
+            <li class="active"><a href=""> APEX</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        
+                        <li><a href="">View ALL ApEX</a></li>
+                        <li><a href="">Compute & HCI</a></li>
+                        <li><a href=""></a>Storage</li>
+                        <li><a href=""></a>Cyber & Data Protection</li>
+                        <li><a href="">Create a Custom Solution</a></li>
+                        <li><a href="">Resources</a></li>
+                    </ul>
+    
+                </div>
+            </li>
+          
+            <li><a href=""> Products</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        
+                        <li><a href="">View ALL Products</a></li>
+                        <li><a href="">Laptops</a></li>
+                        <li><a href=""></a>Desktop & All in ones</li>
+                        <li><a href=""></a>workstations</li>
+                    </ul>
+    
+                </div>
+            
+            </li>
+            <li><a href=""> Solutions</a>
+            
+                <div class="sub-menu-1">
+                    <ul>
+                        
+                        <li><a href="">View All Services</a></li>
+                        <li><a href="">Consulting</a></li>
+                        <li><a href=""></a>Deployment </li>
+                        <li><a href=""></a>Educations services</li>
+                    </ul>
+    
+                </div>
+            </li>
+            <li><a href=""> Services</a></li>
+            <li><a href=""> Support</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        
+                        <li><a href="">View All Deal</a></li>
+                        <li><a href="">Laptop Deals</a></li>
+                        <li><a href=""></a>Budget deals </li>
+                        <li><a href=""></a>Monitor deals</li>
+                    </ul>
+    
+                </div>
+            </li>
+            <li><a href=""> Deals</a></li>
+            <li><a href=""> About Us</a></li>
+            
+        </ul>
+    </div>
+  
+     <div class="midd">
+        <img src="/midd6.png" alt="">
+     </div>
+
+</div>
+
+<div class="cont">
+    <a href="/cart.html"></a>
+  </div>
+
+
+
+
+  <div class="fotter-1">
+    <p>About Us</p>
+    <p>Careers</p>
+    <p>Community</p>
+    <p>Events</p>
+    <p>Partner Program</p>
+    <p>Premier</p>
+    <p>Dell Technologies</p>
+</div>
+<div class="footer-2">
+    <p>Copyright © 2023 Dell Inc</p>
+    <p>Terms of sale</p>
+    <p>Privacy Statement</p>
+    <p>Subscribe/Unsubscribe</p>
+    <p>Legal & Regulatory</p>
+    <p>Site Terms</p>
+    <p>Accessibility</p>
+    <p>Recycling</p>
+    <p>Site Managing</p>
+</div>
+</body>
+<script>
+     let api="https://63ccef4d0f1d5967f0272d07.mockapi.io/products";
+    async function FetchData(){
+        try{
+          let res=await fetch(api)
+               res=await res.json()
+             // console.log(res)
+            //   FilterData(res)
+              display(res)
+        }catch(err){
+          console.log(err)
+        }
+    }
+
+    FetchData()
+    let CartArr=JSON.parse(localStorage.getItem("cart"))||[]
+   let main=document.querySelector(".cont");
+   function display(data){
+    data.forEach((element) => {
+        let div1=document.createElement("div")
+            let img=document.createElement("img")
+            let div2=document.createElement("div")
+            let name=document.createElement("h3")
+            let model=document.createElement("h5")
+            let description=document.createElement("img")
+            let price=document.createElement("h4")
+            let add_to_cart=document.createElement("button")
+
+            img.setAttribute("src",element.image);
+            img.setAttribute("class","image")
+            name.textContent=element.name;
+            model.textContent=element.modelno;
+            description.setAttribute("src",element.description);
+            price.textContent=element.price;
+            add_to_cart.textContent='ADD To Cart'
+            add_to_cart.addEventListener("click",()=>{
+                if(checkDuplicate(element)){
+                    alert("product aleready")
+                }else{
+                    CartArr.push({...element,quantity:1})
+                    localStorage.setItem("cart",JSON.stringify(CartArr))
+                    alert("added")
+                }
+            })
+           
+        div1.append(img,div2);
+        div2.append(name,model,price,description,add_to_cart);
+        main.append(div1)
+    });
+
+   }
+
+
+   function  checkDuplicate(element){
+        for(let i=0;i<CartArr.length;i++){
+          if(CartArr[i].id===element.id){
+            return true
+          }
+        }
+        return false
+   }
+</script>
+</html>
